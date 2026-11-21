@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NC · HUB CONTINUUM · FINAL REFINAL · Alt + Neu</title>
+<style>*{box-sizing:border-box}body{margin:0;background:#050505;color:#f5f5f5;font:15px/1.5 Consolas,monospace;padding-bottom:2rem}
+header{position:sticky;top:0;background:#050505ee;border-bottom:2px solid #00ff66;padding:10px 12px}
+h1{margin:0;font-size:18px;color:#00ff66;letter-spacing:2px}
+.tabs{display:flex;gap:6px;margin-top:8px;overflow-x:auto}button{font:inherit;color:#f5f5f5;background:#0b0b0b;border:1px solid #444;border-radius:8px;padding:10px 12px;min-height:44px;cursor:pointer}
+button:hover{border-color:#00ff66}button.on{background:#00ff66;color:#000;font-weight:700}
+main{max-width:1000px;margin:auto;padding:12px}.view{display:none}.view.on{display:block}
+.card{background:#111;border:1px solid #333;border-radius:10px;padding:14px;margin:0 0 12px}
+h2{margin:0 0 8px;font-size:16px;color:#ffd166}.muted{color:#999}.out{background:#000;border:1px solid #333;border-radius:8px;padding:10px;white-space:pre-wrap}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.slider{display:flex;align-items:center;gap:10px;margin:9px 0}.slider label{width:32px;color:#00ff66}.slider output{width:30px;text-align:right}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.kpi{border:1px solid #333;border-radius:10px;padding:10px;text-align:center}.kpi b{display:block;font-size:22px;color:#66ccff}
+#knoten{display:grid;grid-template-columns:repeat(16,1fr);gap:3px;max-height:220px;overflow:auto;border:1px solid #333;border-radius:8px;padding:4px;background:#0a0a0a}
+.knoten{font-size:10px;padding:5px 2px;text-align:center;border:1px solid #263c55;border-radius:4px}
+#log{height:180px;overflow:auto;white-space:pre-wrap;font-size:12px;background:#000;border:1px solid #333;border-radius:8px;padding:10px}
+#grid10{display:grid;grid-template-columns:repeat(10,1fr);grid-template-rows:repeat(10,1fr);gap:2px;aspect-ratio:1/1;max-width:340px;background:#050a12;padding:4px;border:1px solid #333}
+#grid10 div{font-size:7px;display:flex;align-items:center;justify-content:center;color:#3a4a5a;background:rgba(20,28,40,.55)}
+#grid10 div.done{background:rgba(57,255,136,.16);color:#8cf0d0}#grid10 div.user{background:rgba(240,208,128,.3);color:#ffe9b0}
+footer{text-align:center;color:#999;padding:14px;border-top:1px solid #333;font-size:12px}</style></head>
+<body><header><h1>NC · HUB CONTINUUM · FINAL REFINAL · Alt + Neu</h1><div class="muted">Alt = NC.Hub.continuum · Neu = FINAL REFINAL · Logik auf Logik · MANA rum um rum richtig rum · HALT = ZIEL</div>
+<nav class="tabs" id="tabs"><button data-v="bio" class="on">BIO</button><button data-v="bios">BIOS</button><button data-v="biosen">BIOS.EN</button><button data-v="hub">HUB</button><button data-v="laeufer">LÄUFER</button></nav></header>
+<main>
+<section class="view on" id="v-bio"><div class="card"><h2>BIO · M1 / M2 / M3</h2>
+<div class="slider"><label>M1</label><input type="range" id="m1" min="0" max="10" value="8"><output id="m1o">8</output></div>
+<div class="slider"><label>M2</label><input type="range" id="m2" min="0" max="10" value="7"><output id="m2o">7</output></div>
+<div class="slider"><label>M3</label><input type="range" id="m3" min="0" max="10" value="9"><output id="m3o">9</output></div>
+<div class="kpis"><div class="kpi">Ø<b id="m-avg">8.0</b></div><div class="kpi">P100<b id="m-p100">80</b></div><div class="kpi">Gate<b id="m-gate">3/3</b></div></div>
+<div class="out" id="m-konsens">OFFEN · KOMPETENZ 3/3 · VERBAUEN</div></div>
+<div class="card"><h2>BIO · 729-Karte</h2><div class="row"><label>i<input id="bio-i" type="number" min="1" max="9" value="5" style="width:70px"></label><label>j<input id="bio-j" type="number" min="1" max="9" value="5" style="width:70px"></label><label>k<input id="bio-k" type="number" min="1" max="9" value="5" style="width:70px"></label><button id="bio-go">Zeigen</button></div><div id="bio-cell" class="out">Noch keine Zelle.</div></div></section>
+<section class="view" id="v-bios"><div class="card"><h2>BIOS · nextVal() mit WENDE</h2><div class="row"><select id="nv-mode"><option value="kopieren">kopieren</option><option value="addieren">addieren</option><option value="mitteln">mitteln</option><option value="transformieren">transformieren</option><option value="wende" selected>wende (F>=E)</option></select><input id="nv-src" type="number" value="100" style="width:90px"><input id="nv-prior" type="number" value="0" style="width:90px"><input id="nv-edge" type="number" value="1" style="width:90px"><input id="nv-e" type="number" value="0.5" step="0.1" style="width:90px"><button id="nv-go">Berechnen</button></div><div id="nv-out" class="out">Noch nicht berechnet.</div></div></section>
+<section class="view" id="v-biosen"><div class="card"><h2>BIOS.EN · 94 Knoten (1+3+9+81)</h2><div id="knoten"></div></div><div class="card"><h2>Kette 729 → 243 → 81 → 27 → 9 → 3 → 1</h2><div id="kette" class="out">729 → 243 → 81 → 27 → 9 → 3 → 1 · immer ÷3</div></div></section>
+<section class="view" id="v-hub"><div class="card"><h2>HUB · NC.Hub.continuum — Alt</h2><p class="muted">NCregister + NCmap + MANA-Verteiler · Alt + Neu · Logik auf Logik</p>
+<div class="row"><input id="hub-vec" value="v1024" style="flex:1"><button id="hub-go">MANA verteilen</button></div><div id="hub-out" class="out">Noch nicht verteilt.</div>
+<div class="out" id="hub-reg" style="margin-top:8px">Module: —</div></div>
+<div class="card"><h2>HUB · 6D-Routing</h2><div class="row"><select id="hub-achse"><option>Höhe</option><option>Breite</option><option>Tiefe</option><option>Mystery-Höhe</option><option>Mystery-Breite</option><option>Mystery-Tiefe</option></select><button id="hub-route">Route</button></div><div id="hub-route-out" class="out">—</div></div></section>
+<section class="view" id="v-laeufer"><div class="card"><h2>LÄUFER · 7 Blöcke × 100 Slots · ROOT</h2><div id="grid10"></div><div class="muted" id="laeuferInfo">Block 0 · Basis 1000 · User@13</div><div class="row"><button id="bRun">▶ RUN</button><button id="bStep">⏭ STEP</button><button id="bResetL">⟲ RESET</button></div><div class="out" id="laeuferOut">Läufer bereit.</div></div></section>
+<section class="card"><h2>NC.COMMANDO · 4 Befehle</h2><div class="row"><button id="cmd-scout">SCOUT</button><button id="cmd-halt">HALT</button><button id="cmd-build">BUILD</button><button id="cmd-save">SAVE</button></div><div id="cmd-out" class="out">Bereit.</div></section>
+<section class="card"><h2>LOG · append-only</h2><div id="log"></div></section>
+</main><footer>NC · HUB CONTINUUM · Alt + Neu · Vanilla JS · HALT = ZIEL · MANA rum um rum richtig rum</footer>
+<script>
+"use strict";const $=id=>document.getElementById(id);
+let S={pos:0,halted:false,m:{m1:8,m2:7,m3:9},log:[]};
+function log(m){S.log.push(m);$("log").textContent=S.log.slice(-200).join("\n");}
+function wende(E,F){return (F>=E)?1:0;}
+function nextVal(mode,src,prior,edges,E){if(!edges.length)return 0;const sum=edges.reduce((a,e)=>a+e.value,0);switch(mode){case "kopieren":return src;case "addieren":return prior+sum;case "mitteln":return sum/edges.length;case "transformieren":return src*edges[0].value/100;case "wende":return wende(E||0,edges[0].value);default:return 0;}}
+function m123(m1,m2,m3){const s=[m1,m2,m3].slice().sort((a,b)=>a-b);const avg=(m1+m2+m3)/3;const konsens=(m1===m2&&m2===m3)?"KONSENS":((m1===m2||m2===m3||m1===m3)?"TEILKONSENS":"OFFEN");const gate=[m1,m2,m3].filter(v=>v>=7).length;return {M1:s[0],M2:s[1],M3:s[2],avg,p100:avg*10,konsens,gate,build:gate===3};}
+function renderM123(){const {m1,m2,m3}=S.m;$("m1").value=m1;$("m2").value=m2;$("m3").value=m3;$("m1o").textContent=m1;$("m2o").textContent=m2;$("m3o").textContent=m3;const r=m123(m1,m2,m3);$("m-avg").textContent=r.avg.toFixed(1);$("m-p100").textContent=Math.round(r.p100);$("m-gate").textContent=r.gate+"/3";$("m-konsens").textContent=r.konsens+" · KOMPETENZ "+r.gate+"/3 · "+(r.build?"VERBAUEN":"WAIT");}
+function renderKnoten(){let h="";for(let n=1;n<=94;n++)h+=`<div class="knoten">${n}</div>`;$("knoten").innerHTML=h;}
+// --- ALT: NCregister + NCmap + MANA ---
+const NCregister={modules:{},add(n,d){this.modules[n]=d;},addPOT(){this.add("POT.P",{typ:"Primär"});this.add("POT.O",{typ:"Ordert"});this.add("POT.T",{typ:"Tele-Matrix"});},add6D(){this.add("6D.Höhe",{symbol:"▲"});this.add("6D.Breite",{symbol:"◀▶"});this.add("6D.Tiefe",{symbol:"▼"});this.add("6D.Mystery-Höhe",{symbol:"⬆"});this.add("6D.Mystery-Breite",{symbol:"⬌"});this.add("6D.Mystery-Tiefe",{symbol:"⬇"});},addDANEBEN(){this.add("DA",{typ:"Erfassung"});this.add("NE",{typ:"Neutralisierung"});this.add("BEN",{typ:"Bewertung"});},init(){this.addPOT();this.add6D();this.addDANEBEN();return this;}};
+NCregister.init();
+const NCmap={route6D(a){const m={"Höhe":"SCALE","Breite":"POOL","Tiefe":"NET","Mystery-Höhe":"AXO","Mystery-Breite":"DR","Mystery-Tiefe":"ID"};return m[a]||null;}};
+function NC_KI(v){return {A:"KI(core) -> "+v,B:"KI(h1) -> "+v,C:"KI(e3) -> "+v,D:"KI(matrix) -> "+v};}
+function NC_AI(v){return {A:"AI(operator) -> "+v,B:"AI(whirl) -> "+v,C:"AI(w128) -> "+v,D:"AI(win.inf) -> "+v};}
+function HUB_6D(v){return {D0:"Root -> "+v,D1:"Achse -> "+v,D2:"TMP -> "+v,D3:"Lage -> "+v,D4:"Later -> "+v,D5:"Ort -> "+v};}
+function NC_HUB_All(v){return {KI:NC_KI(v),AI:NC_AI(v),hub6D:HUB_6D(v)};}
+// --- ALT: Läufer ---
+const USER_SLOTS=[13,47,88,21,73,5,96];let LAUF={block:0,slot:0,cells:[]};
+function mkCells(idx){const u=USER_SLOTS[idx%7];const a=[];for(let i=0;i<100;i++)a.push({slot:i,isUser:i===u,state:0});return a;}
+LAUF.cells=mkCells(0);
+function renderLaeufer(){const g=$("grid10");g.innerHTML="";LAUF.cells.forEach((c,i)=>{const d=document.createElement("div");if(c.state===1)d.className="done";if(c.state===2)d.className="user";d.textContent=c.isUser?"★":String(i).padStart(2,"0");g.appendChild(d);});$("laeuferInfo").textContent="Block "+LAUF.block+" · Basis "+(1000+LAUF.block*100)+" · User@"+USER_SLOTS[LAUF.block%7]+" · "+LAUF.cells.filter(c=>c.state>0).length+"/100";}
+function laufStep(){const c=LAUF.cells[LAUF.slot];if(c&&c.state===0){c.state=c.isUser?2:1;if(c.isUser)log("LÄUFER USER · Block "+LAUF.block+" · Slot "+LAUF.slot);}LAUF.slot++;if(LAUF.slot>=100){LAUF.slot=0;LAUF.block++;if(LAUF.block>=7){LAUF.block=6;log("LÄUFER 7 Blöcke vollendet");}else LAUF.cells=mkCells(LAUF.block);}renderLaeufer();}
+$("tabs").onclick=e=>{const b=e.target.closest("[data-v]");if(!b)return;[...document.querySelectorAll(".view")].forEach(v=>v.classList.toggle("on",v.id==="v-"+b.dataset.v));[...$("tabs").children].forEach(x=>x.classList.toggle("on",x===b));};
+["m1","m2","m3"].forEach(k=>{$(k).addEventListener("input",e=>{S.m[k]=Number(e.target.value);renderM123();});});
+$("bio-go").onclick=()=>{const i=+$("bio-i").value,j=+$("bio-j").value,k=+$("bio-k").value;const pos=(k-1)*81+(i-1)*9+(j-1);S.pos=pos;$("bio-cell").textContent="Adresse: "+i+"-"+j+"-"+k+" · Position: "+pos;log("BIO Zelle "+i+"-"+j+"-"+k);};
+$("nv-go").onclick=()=>{const r=nextVal($("nv-mode").value,+$("nv-src").value,+$("nv-prior").value,[{value:+$("nv-edge").value}],+$("nv-e").value);$("nv-out").textContent="nextVal = "+r;log("nextVal → "+r);};
+$("hub-go").onclick=()=>{const v=$("hub-vec").value;const r=NC_HUB_All(v);$("hub-out").textContent=JSON.stringify(r,null,2);$("hub-reg").textContent="Module: "+Object.keys(NCregister.modules).join(", ");log("HUB MANA verteilt → "+v);};
+$("hub-route").onclick=()=>{const a=$("hub-achse").value;$("hub-route-out").textContent=a+" → "+NCmap.route6D(a);log("HUB Route "+a+" → "+NCmap.route6D(a));};
+$("bRun").onclick=()=>{for(let i=0;i<10;i++)laufStep();};
+$("bStep").onclick=laufStep;
+$("bResetL").onclick=()=>{LAUF.block=0;LAUF.slot=0;LAUF.cells=mkCells(0);renderLaeufer();};
+["scout","halt","build","save"].forEach(c=>{$("cmd-"+c).onclick=()=>{if(c==="halt"){S.halted=!S.halted;$("cmd-out").textContent="HALT "+(S.halted?"AN":"AUS");log("HALT "+(S.halted?"AN":"AUS"));return;}if(S.halted&&c!=="save"){$("cmd-out").textContent="HALT · "+c+" blockiert";return;}$("cmd-out").textContent=c.toUpperCase()+" · OK";log("COMMANDO "+c.toUpperCase());};});
+renderM123();renderKnoten();renderLaeufer();log("NC HUB CONTINUUM geöffnet · Alt + Neu · Logik auf Logik · MANA rum um rum");
+</script></body></html>
